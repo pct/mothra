@@ -1,5 +1,15 @@
 #!/usr/bin/env ruby
 
+require 'awesome_print'
+require 'rodzilla'
 require 'mothra'
 
-puts 'hello, mothra'
+@config = YAML.load_file 'config.yml'
+
+bz = Rodzilla::Resource::Bug.new(@config['BZ_URL'], @config['BZ_USER'], @config['BZ_PASSWD'], :json)
+
+ret = bz.search(product: ['Ports & Packages'])
+
+ap ret
+
+
