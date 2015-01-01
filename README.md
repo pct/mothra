@@ -1,6 +1,6 @@
 # Mothra
 
-TODO: Write a gem description
+TODO: NOT done yet
 
 ## Installation
 
