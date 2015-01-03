@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'awesome_print'
+require 'pathname'
+require 'base64'
 require 'date'
 require 'colorize'
 require 'rodzilla'
@@ -35,7 +37,7 @@ end
 
 def create
   begin
-    ret = @bz.create(product: @config['PRODUCT'],
+    ret = @bz.create!(product: @config['PRODUCT'],
                      component: @config['COMPONENT'],
                      version: '1.0',
                      op_sys: 'FreeBSD',
@@ -49,12 +51,40 @@ def create
                     )
 
     print 'PR'
-    print " #{ret['id']} ".yellow
+    print " [#{ret['id']}] ".yellow
     puts "created!"
+    puts "#{@config['BZ_URL']}/show_bug.cgi?id=#{ret['id']}".cyan
   rescue
     puts 'Send-pr fail, please try again!'.yellow
   end
 end
 
+def add_file(bug_id, file_path)
+  file_name = Pathname.new(file_path).basename
+  file_base64 = base64(file_path)
+
+  begin
+    ret = @bz.add_attachment!(ids: [bug_id],
+                             data: file_base64,
+                             file_name: file_name,
+                             summary: 'Just add an attachment.',
+                             content_type: 'text/plain',
+                            )
+    print 'PR'
+    print " [#{bug_id}] ".cyan
+    print 'had add an attachment, '
+    puts " [#{ret['ids'][0]}] ".yellow
+    puts "#{@config['BZ_URL']}/show_bug.cgi?id=#{bug_id}".cyan
+  rescue
+    puts 'Fail to add attachments, please try again!'.yellow
+  end
+
+end
+
+def base64(file_path)
+  Base64.encode64(IO.read(file_path))
+end
+
 #search 'broken'
 #create
+add_file 26265, 'lib/mothra.rb'

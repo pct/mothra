@@ -3,7 +3,7 @@ BZ_URL: https://bugs.freebsd.org/bugzilla/
 BZ_USER: test@example.com
 BZ_PASSWD: test
 
-COMPONENT: Individual Port(s)
 PRODUCT: Ports & Packages
+COMPONENT: Individual Port(s)
 STATUS: ['New', 'Open', 'In Progress', 'UNCONFIRMED']
 
