@@ -16,10 +16,13 @@ def search(keyword)
 
   if not results['bugs'].empty?
     results['bugs'].each_with_index do |r, i|
+      print "[#{r['id']}] ".yellow
       print "[#{r['status']}] ".cyan
       print "#{r['summary']} ".white
       puts "[#{r['last_change_time']}] ".gray
     end
+  else
+    puts 'Not found.'
   end
 
 
