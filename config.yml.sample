@@ -1,0 +1,9 @@
+# bugzilla base data
+BZ_URL: https://bugs.freebsd.org/bugzilla/
+BZ_USER: test@example.com
+BZ_PASSWD: test
+
+COMPONENT: Individual Port(s)
+PRODUCT: Ports & Packages
+STATUS: ['New', 'Open', 'In Progress', 'UNCONFIRMED']
+

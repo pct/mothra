@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "thor"
   spec.add_dependency "rodzilla"
+  spec.add_dependency "colorize"
 
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "awesome_print"

@@ -2,6 +2,7 @@
 
 require 'awesome_print'
 require 'date'
+require 'colorize'
 require 'rodzilla'
 require 'mothra'
 
@@ -10,13 +11,22 @@ require 'mothra'
 @bz = Rodzilla::Resource::Bug.new(@config['BZ_URL'], @config['BZ_USER'], @config['BZ_PASSWD'], :json)
 
 def search(keyword)
-  last_3_months = DateTime.now - 90
-  ret = @bz.search(component: 'Individual Port(s)', product: ['Ports & Packages'], creation_time: last_3_months, summary: keyword)
+  half_years_ago = DateTime.now - 180
+  results = @bz.search(component: @config['COMPONENT'], product: @config['PRODUCT'], creation_time: half_years_ago, status: @config['STATUS'], summary: keyword)
 
-  ap ret
+  if not results['bugs'].empty?
+    results['bugs'].each_with_index do |r, i|
+      print "[#{r['status']}] ".cyan
+      print "#{r['summary']} ".white
+      puts "[#{r['last_change_time']}] ".gray
+    end
+  end
+
+
 end
 
 def create
 
 end
 
+search 'broken'
