@@ -12,7 +12,12 @@ require 'mothra'
 
 def search(keyword)
   half_years_ago = DateTime.now - 180
-  results = @bz.search(component: @config['COMPONENT'], product: @config['PRODUCT'], creation_time: half_years_ago, status: @config['STATUS'], summary: keyword)
+  results = @bz.search(product: @config['PRODUCT'], 
+                       component: @config['COMPONENT'], 
+                       creation_time: half_years_ago, 
+                       status: @config['STATUS'], 
+                       summary: keyword
+                      )
 
   if not results['bugs'].empty?
     results['bugs'].each_with_index do |r, i|
@@ -29,7 +34,27 @@ def search(keyword)
 end
 
 def create
+  begin
+    ret = @bz.create(product: @config['PRODUCT'],
+                     component: @config['COMPONENT'],
+                     version: '1.0',
+                     op_sys: 'FreeBSD',
+                     platform: 'All',
+                     #version: 'Latest',
+                     #severity: 'Affects Only Me',
+                     #op_sys: 'Any',
+                     #platform: 'Any',
+                     summary: 'just a test',
+                     description: 'just a normal test',
+                    )
 
+    print 'PR'
+    print " #{ret['id']} ".yellow
+    puts "created!"
+  rescue
+    puts 'Send-pr fail, please try again!'.yellow
+  end
 end
 
-search 'broken'
+#search 'broken'
+#create
