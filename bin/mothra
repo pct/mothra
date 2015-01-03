@@ -1,15 +1,22 @@
 #!/usr/bin/env ruby
 
 require 'awesome_print'
+require 'date'
 require 'rodzilla'
 require 'mothra'
 
 @config = YAML.load_file 'config.yml'
 
-bz = Rodzilla::Resource::Bug.new(@config['BZ_URL'], @config['BZ_USER'], @config['BZ_PASSWD'], :json)
+@bz = Rodzilla::Resource::Bug.new(@config['BZ_URL'], @config['BZ_USER'], @config['BZ_PASSWD'], :json)
 
-ret = bz.search(product: ['Ports & Packages'])
+def search(keyword)
+  last_3_months = DateTime.now - 90
+  ret = @bz.search(component: 'Individual Port(s)', product: ['Ports & Packages'], creation_time: last_3_months, summary: keyword)
 
-ap ret
+  ap ret
+end
 
+def create
+
+end
 

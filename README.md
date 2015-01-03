@@ -2,6 +2,10 @@
 
 TODO: NOT done yet
 
+## ref
+
+http://www.bugzilla.org/docs/4.4/en/html/api/Bugzilla/WebService/Server/JSONRPC.html
+
 ## Installation
 
 Add this line to your application's Gemfile:
