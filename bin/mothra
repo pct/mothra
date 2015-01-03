@@ -35,7 +35,7 @@ def search(keyword)
 
 end
 
-def create
+def create(summary)
   begin
     ret = @bz.create!(product: @config['PRODUCT'],
                      component: @config['COMPONENT'],
@@ -46,8 +46,7 @@ def create
                      #severity: 'Affects Only Me',
                      #op_sys: 'Any',
                      #platform: 'Any',
-                     summary: 'just a test',
-                     description: 'just a normal test',
+                     summary: summary
                     )
 
     print 'PR'
@@ -86,5 +85,5 @@ def base64(file_path)
 end
 
 #search 'broken'
-#create
-add_file 26265, 'lib/mothra.rb'
+create 'just another test'
+#add_file 26265, 'lib/mothra.rb'
