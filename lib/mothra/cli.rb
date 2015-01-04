@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+#require 'awesome_print'
 require 'date'
 require 'colorize'
 require 'thor'
@@ -8,7 +9,7 @@ require 'rodzilla'
 require 'base64'
 require 'pathname'
 
-def get_file_name
+def get_file_name(file_path)
   Pathname.new(file_path).basename
 end
 
@@ -17,12 +18,10 @@ def base64(file_path)
 end
 
 def check_config
-  config_file = '~/.config/mothra/config.yml'
+  config_file = "#{Dir.home}/.mothra.yml"
 
-  if File.exist?(config_file)
-    @config = YAML.load_file 'config.yml'
-  else
-    puts 'You should set ~/.config/mothra/config.yml first!'.yellow 
+  if not File.exist?(config_file)
+    puts 'You should set ~/.mothra.yml first!'.yellow 
     exit
   end
 end
@@ -30,12 +29,13 @@ end
 check_config
 
 class CLI < Thor
-  def initialize
+  def initialize(*args)
+    super
+    @config = YAML.load_file "#{Dir.home}/.mothra.yml"
     @bz = Rodzilla::Resource::Bug.new(@config['BZ_URL'], @config['BZ_USER'], @config['BZ_PASSWD'], :json)
   end
 
   desc 'search <keyword>', 'search keyword from bugzilla summary for last 180 days'
-  option :keyword, :required => true
   def search(keyword)
     half_years_ago = DateTime.now - 180
     results = @bz.search(product: @config['PRODUCT'], 
@@ -58,7 +58,6 @@ class CLI < Thor
   end
 
   desc 'create <summary>', 'set PR summary and then `mothra add_file <attachment>`'
-  option :summary, :required => true
   def create(summary)
     begin
       ret = @bz.create!(product: @config['PRODUCT'],
@@ -82,9 +81,8 @@ class CLI < Thor
     end
   end
 
-  desc 'add_file <bug_id>, <file_path>', 'add attachment to <bug_id>'
-  option :bug_id
-  def add_file(bug_id, file_path)
+  desc 'attach <bug_id>, <file_path>', 'add attachment to <bug_id>'
+  def attach(bug_id, file_path)
     file_name = get_file_name(file_path)
     file_base64 = base64(file_path)
 
@@ -105,5 +103,6 @@ class CLI < Thor
     end
 
   end
-
 end
+
+CLI.start(ARGV)
