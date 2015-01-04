@@ -29,10 +29,11 @@ end
 
 check_config
 
-
-@bz = Rodzilla::Resource::Bug.new(@config['BZ_URL'], @config['BZ_USER'], @config['BZ_PASSWD'], :json)
-
 class CLI < Thor
+  def initialize
+    @bz = Rodzilla::Resource::Bug.new(@config['BZ_URL'], @config['BZ_USER'], @config['BZ_PASSWD'], :json)
+  end
+
   desc 'search <keyword>', 'search keyword from bugzilla summary for last 180 days'
   option :keyword, :required => true
   def search(keyword)
@@ -56,6 +57,8 @@ class CLI < Thor
     end
   end
 
+  desc 'create <summary>', 'set PR summary and then `mothra add_file <attachment>`'
+  option :summary, :required => true
   def create(summary)
     begin
       ret = @bz.create!(product: @config['PRODUCT'],
@@ -79,6 +82,8 @@ class CLI < Thor
     end
   end
 
+  desc 'add_file <bug_id>, <file_path>', 'add attachment to <bug_id>'
+  option :bug_id
   def add_file(bug_id, file_path)
     file_name = get_file_name(file_path)
     file_base64 = base64(file_path)
