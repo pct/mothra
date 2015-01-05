@@ -1,4 +1,4 @@
-Copyright (c) 2014 Jin-Sih Lin
+Copyright (c) 2015 Jin-Sih Lin
 
 MIT License
 
