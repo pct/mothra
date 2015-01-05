@@ -6,19 +6,7 @@ A FreeBSD send-pr command line tool for bugzilla system.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'mothra'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install mothra
+	$ gem install mothra
     
 ## Add ~/.mothra.yml settings 
 	$ curl https://raw.githubusercontent.com/pct/mothra/master/.mothra.yml > ~/.mothra.yml
