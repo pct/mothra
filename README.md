@@ -19,10 +19,24 @@ And then execute:
 Or install it yourself as:
 
     $ gem install mothra
+    
+## Add ~/.mothra.yml settings 
+	# bugzilla base data
+	BZ_URL: https://bugs.freebsd.org/bugzilla/
+	BZ_USER: test@example.com
+	BZ_PASSWD: test
+	
+	PRODUCT: Ports & Packages
+	COMPONENT: Individual Port(s)
+	STATUS: ['New', 'Open', 'In Progress', 'UNCONFIRMED']
 
 ## Usage
-### search 
- 
+	Commands:
+	  mothra attach <bug_id>, <file_path>      # add attachment to <bug_id>
+	  mothra create <summary>                  # set PR summary only, no attachments
+	  mothra help [COMMAND]                    # Describe available commands or one specific command
+	  mothra search <keyword>, <days_ago=180>  # search keyword from bugzilla summary for last 180 days or you want
+	  mothra submit <summary>, <file_path>     # send-pr to bugs.freebsd.org
 
 ## Reference
 1. [https://bugs.freebsd.org/bugzilla/](https://bugs.freebsd.org/bugzilla/)

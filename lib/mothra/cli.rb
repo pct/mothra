@@ -57,7 +57,7 @@ class CLI < Thor
     end
   end
 
-  desc 'create <summary>', 'set PR summary and then `mothra add_file <attachment>`'
+  desc 'create <summary>', 'set PR summary only, no attachments'
   def create(summary)
     bug_id = _create(summary)
 
