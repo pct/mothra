@@ -114,13 +114,13 @@ class CLI < Thor
     begin
       ret = @bz.create!(product: @config['PRODUCT'],
                         component: @config['COMPONENT'],
-                        version: '1.0',
-                        op_sys: 'FreeBSD',
-                        platform: 'All',
-                        #version: 'Latest',
-                        #severity: 'Affects Only Me',
-                        #op_sys: 'Any',
-                        #platform: 'Any',
+                        #version: '1.0', #bugzilla test 
+                        #op_sys: 'FreeBSD', #bugzilla test
+                        #platform: 'All', #bugzilla test
+                        version: 'Latest',
+                        severity: 'Affects Only Me',
+                        op_sys: 'Any',
+                        platform: 'Any',
                         summary: summary
                        )
 
