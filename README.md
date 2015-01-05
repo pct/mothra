@@ -21,6 +21,10 @@ Or install it yourself as:
     $ gem install mothra
     
 ## Add ~/.mothra.yml settings 
+	$ curl https://raw.githubusercontent.com/pct/mothra/master/.mothra.yml > ~/.mothra.yml
+
+or create manually:
+
 	# bugzilla base data
 	BZ_URL: https://bugs.freebsd.org/bugzilla/
 	BZ_USER: test@example.com
