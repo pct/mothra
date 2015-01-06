@@ -67,3 +67,8 @@ or create manually:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
+## TODO
+
+`mothra get <bug_id>`
+
+`mothra comment <bug_id>`
