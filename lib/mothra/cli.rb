@@ -172,7 +172,7 @@ class CLI < Thor
       ret = @bz.add_attachment!(ids: [bug_id],
                                 data: file_base64,
                                 file_name: file_name,
-                                summary: 'Just add an attachment.',
+                                summary: file_name,
                                 content_type: 'text/plain',
                                )
 
