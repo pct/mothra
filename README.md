@@ -25,6 +25,7 @@ or create manually:
 ## Usage
 	Commands:
 	  mothra attach <bug_id>, <file_path>      # add attachment to <bug_id>
+	  mothra browse <bug_id>                   # open <bug_id> at your browser
 	  mothra create <summary>                  # set PR summary only, no attachments
 	  mothra get <bug_id>                      # get info of <bug_id>
 	  mothra help [COMMAND]                    # Describe available commands or one specific command
@@ -71,7 +72,5 @@ or create manually:
 ## TODO (0.0.2)
 
 `mothra comment <bug_id>` #add comment
-
-`mothra browse <bug_id>` #using browser to open it
 
 `mothra setup` #copy settings to ~/.mothra.yml

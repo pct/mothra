@@ -91,6 +91,24 @@ class CLI < Thor
     end
   end
 
+  desc 'browse <bug_id>', 'open <bug_id> at your browser'
+  def browse(bug_id)
+    if not is_numeric?bug_id
+      puts 'No such bug id'
+      exit
+    end
+
+    url = "#{@config['BZ_URL']}/show_bug.cgi?id=#{bug_id}"
+
+    if RbConfig::CONFIG['host_os'] =~ /darwin/
+      system "open #{url}"
+    elsif RbConfig::CONFIG['host_os'] =~ /linux|bsd/
+      system "xdg-open #{url}"
+    else
+      puts 'Could not open url at your platform, sorry.'
+    end
+  end
+
   desc 'create <summary>', 'set PR summary only, no attachments'
   def create(summary)
     bug_id = _create(summary)
