@@ -71,6 +71,4 @@ or create manually:
 
 ## TODO (0.0.2)
 
-`mothra comment <bug_id>` #add comment
-
 `mothra setup` #copy settings to ~/.mothra.yml
