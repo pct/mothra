@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-#require 'awesome_print'
+require 'awesome_print'
 require 'date'
 require 'colorize'
 require 'thor'
@@ -8,6 +8,18 @@ require 'rodzilla'
 
 require 'base64'
 require 'pathname'
+
+def clean_bz_url(url)
+  if url.end_with? '/'
+    url = url[0..-2]
+  end
+
+  url
+end
+
+def is_numeric?(obj) 
+  obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
+end
 
 def get_file_name(file_path)
   Pathname.new(file_path).basename
@@ -32,6 +44,7 @@ class CLI < Thor
   def initialize(*args)
     super
     @config = YAML.load_file "#{Dir.home}/.mothra.yml"
+    @config['BZ_URL'] = clean_bz_url(@config['BZ_URL'])
     @bz = Rodzilla::Resource::Bug.new(@config['BZ_URL'], @config['BZ_USER'], @config['BZ_PASSWD'], :json)
   end
 
@@ -54,6 +67,27 @@ class CLI < Thor
       end
     else
       puts 'Not found.'
+    end
+  end
+
+  desc 'get <bug_id>', 'get info of <bug_id>'
+  def get(bug_id)
+    if not is_numeric?bug_id
+      puts 'No such bug id'
+      exit
+    end
+    
+    ret = @bz.get(ids: bug_id)
+
+    begin
+      r = ret['bugs'][0]
+      print "[#{r['id']}] ".yellow
+      print "[#{r['status']}] [#{r['resolution']}] ".cyan
+      print "#{r['summary']} ".white
+      puts "[#{r['last_change_time']}] ".light_black
+      puts "#{@config['BZ_URL']}/show_bug.cgi?id=#{bug_id}".cyan
+    rescue
+      puts 'No such bug_id'
     end
   end
 

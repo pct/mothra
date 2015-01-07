@@ -26,6 +26,7 @@ or create manually:
 	Commands:
 	  mothra attach <bug_id>, <file_path>      # add attachment to <bug_id>
 	  mothra create <summary>                  # set PR summary only, no attachments
+	  mothra get <bug_id>                      # get info of <bug_id>
 	  mothra help [COMMAND]                    # Describe available commands or one specific command
 	  mothra search <keyword>, <days_ago=180>  # search keyword from bugzilla summary for last 180 days or you want
 	  mothra submit <summary>, <file_path>     # send-pr to bugs.freebsd.org
@@ -67,8 +68,10 @@ or create manually:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-## TODO
+## TODO (0.0.2)
 
-`mothra get <bug_id>`
+`mothra comment <bug_id>` #add comment
 
-`mothra comment <bug_id>`
+`mothra browse <bug_id>` #using browser to open it
+
+`mothra setup` #copy settings to ~/.mothra.yml
