@@ -72,3 +72,5 @@ or create manually:
 ## TODO (0.0.3)
 
 `mothra setup` #copy settings to ~/.mothra.yml
+`mothra diff` #create patch
+`mothra update` #update port Makefile version and distinfo version
