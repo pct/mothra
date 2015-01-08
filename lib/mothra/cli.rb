@@ -83,7 +83,7 @@ class CLI < Thor
     begin
       r = ret['bugs'][0]
       print "[#{r['id']}] ".yellow
-      print "[#{r['status']}] [#{r['resolution']}] ".cyan
+      print "[#{r['status']}] ".cyan
       print "#{r['summary']} ".white
       puts "[#{r['last_change_time']}] ".light_black
       puts "#{@config['BZ_URL']}/show_bug.cgi?id=#{bug_id}".cyan
