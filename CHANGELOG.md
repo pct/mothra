@@ -1,9 +1,8 @@
-## 0.0.2 (not yet released)
+## 0.0.2 (2015-01-08)
 
 - NEW: 
 	- `get <bug_id>`
 	- `browse <bug_id>`
-	- `setup`
 
 # 0.0.1 (2015-01-06)
 - Base system with following commands

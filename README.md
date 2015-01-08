@@ -69,6 +69,6 @@ or create manually:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-## TODO (0.0.2)
+## TODO (0.0.3)
 
 `mothra setup` #copy settings to ~/.mothra.yml
