@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'awesome_print'
+#require 'awesome_print'
 require 'date'
 require 'colorize'
 require 'thor'
