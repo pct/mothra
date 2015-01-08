@@ -8,6 +8,7 @@ require 'rodzilla'
 
 require 'base64'
 require 'pathname'
+require 'mkmf'
 
 def clean_bz_url(url)
   if url.end_with? '/'
@@ -103,7 +104,12 @@ class CLI < Thor
     if RbConfig::CONFIG['host_os'] =~ /darwin/
       system "open #{url}"
     elsif RbConfig::CONFIG['host_os'] =~ /linux|bsd/
-      system "xdg-open #{url}"
+      if find_executable 'xdg-open'
+        system "xdg-open #{url}"
+      else
+        puts 'You have no xdg-open command, please browse it manually!'
+        puts url.cyan
+      end
     else
       puts 'Could not open url at your platform, sorry.'
     end
