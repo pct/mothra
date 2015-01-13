@@ -36,6 +36,9 @@ or create manually:
 1. [https://bugs.freebsd.org/bugzilla/](https://bugs.freebsd.org/bugzilla/)
 2. [http://www.bugzilla.org/docs/4.4/en/html/api/Bugzilla/WebService/Server/JSONRPC.html](http://www.bugzilla.org/docs/4.4/en/html/api/Bugzilla/WebService/Server/JSONRPC.html)
 
+## NOTICE
+###If you got SSL error on FreeBSD, you could try to reinstall *security/ca_root_nss* port.
+
 ## License
 
 	Copyright (c) 2015 Jin-Sih Lin
@@ -70,7 +73,10 @@ or create manually:
 5. Create a new Pull Request
 
 ## TODO (0.0.3)
+`mothra comment` #add comment to <bug_id>
 
 `mothra setup` #copy settings to ~/.mothra.yml
+
 `mothra diff` #create patch
+
 `mothra update` #update port Makefile version and distinfo version
