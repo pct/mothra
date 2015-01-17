@@ -34,7 +34,9 @@ def check_config
   config_file = "#{Dir.home}/.mothra.yml"
 
   if not File.exist?(config_file)
-    puts 'You should set ~/.mothra.yml first!'.yellow 
+    puts 'You should set ~/.mothra.yml first! Just: '.yellow 
+    puts '`curl https://raw.githubusercontent.com/pct/mothra/master/.mothra.yml > ~/.mothra.yml`'.cyan 
+
     exit
   end
 end
